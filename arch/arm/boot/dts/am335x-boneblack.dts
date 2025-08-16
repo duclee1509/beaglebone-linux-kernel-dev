@@ -4,10 +4,16 @@
  */
 /dts-v1/;
 
+#define ENABLE_SPI_CAN 0
+
 #include "am33xx.dtsi"
 #include "am335x-bone-common.dtsi"
 #include "am335x-boneblack-common.dtsi"
 #include "am335x-boneblack-hdmi.dtsi"
+
+#if ENABLE_SPI_CAN
+#include "am335x-bone-mcp2515.dtsi"
+#endif
 
 / {
 	model = "TI AM335x BeagleBone Black";
