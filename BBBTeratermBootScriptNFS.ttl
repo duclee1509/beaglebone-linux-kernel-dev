@@ -1,0 +1,24 @@
+Tmp="=>"
+sendln "setenv gw_ip 192.168.4.1"
+wait Tmp
+sendln "setenv server_ip 192.168.4.16"
+wait Tmp
+sendln "setenv serverip 192.168.4.16"
+wait Tmp
+sendln "setenv client_ip 192.168.4.25"
+wait Tmp
+sendln "setenv ipaddr 192.168.4.25"
+wait Tmp
+sendln "setenv root_dir '/nfs/bbb'"
+wait Tmp
+sendln "setenv tftp_dir ''"
+wait Tmp
+sendln "setenv bootfile vmlinuz-5.10.168-ti-r72"
+wait Tmp
+sendln "setenv fdtfile am335x-boneblack.dtb"
+wait Tmp
+sendln "setenv nfsboot 'echo Booting from ${server_ip} ...; setenv nfsroot ${server_ip}:${root_dir}${nfs_options}; setenv ip ${client_ip}:${server_ip}:${gw_ip}:${netmask}::${device}:${autoconf}; setenv autoload no; setenv serverip ${server_ip}; setenv ipaddr ${client_ip}; tftp ${loadaddr} ${tftp_dir}${bootfile}; tftp ${fdtaddr} ${tftp_dir}/${fdtfile}; run nfsargs; bootz ${loadaddr} - ${fdtaddr}'"
+wait Tmp
+sendln "setenv bootcmd 'run nfsboot'"
+wait Tmp
+sendln "run nfsboot"
