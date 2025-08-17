@@ -7,6 +7,12 @@ menu "Character devices"
 
 source "drivers/tty/Kconfig"
 
+config LCD1602_I2C
+	tristate "LCD1602 I2C Driver"
+	default y
+	help
+		Control the LCD1602 display using I2C protocol.
+
 config TTY_PRINTK
 	tristate "TTY driver to output user messages via printk"
 	depends on EXPERT && TTY
