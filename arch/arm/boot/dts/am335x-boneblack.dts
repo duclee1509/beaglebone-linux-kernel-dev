@@ -5,6 +5,7 @@
 /dts-v1/;
 
 #define ENABLE_SPI_CAN 0
+#define USE_I2C1 0
 
 #include "am33xx.dtsi"
 #include "am335x-bone-common.dtsi"

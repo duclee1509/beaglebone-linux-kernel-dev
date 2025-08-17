@@ -91,6 +91,15 @@
 		>;
 	};
 
+#if USE_I2C1
+	i2c1_pins: pinmux_i2c1_pins {
+		pinctrl-single,pins = <
+			AM33XX_PADCONF(AM335X_PIN_SPI0_CS0, PIN_INPUT_PULLUP, MUX_MODE2)	/* spi0_cs0.i2c1_scl */
+			AM33XX_PADCONF(AM335X_PIN_SPI0_D1, PIN_INPUT_PULLUP, MUX_MODE2)		/* spi0_d1.i2c1_sda */
+		>;
+	};
+#endif
+
 	uart0_pins: pinmux_uart0_pins {
 		pinctrl-single,pins = <
 			AM33XX_PADCONF(AM335X_PIN_UART0_RXD, PIN_INPUT_PULLUP, MUX_MODE0)
@@ -227,6 +236,22 @@
 	};
 };
 
+#if USE_I2C1
+&i2c1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&i2c1_pins>;
+
+	status = "okay";
+	clock-frequency = <100000>;
+	symlink = "bone/i2c/1";
+
+	lcd1602@27 {
+		compatible = "hd4478,lcd1602";
+		reg = <0x27>;
+	};
+};
+#endif
+
 &i2c2 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&i2c2_pins>;
@@ -274,6 +299,13 @@
 			reg = <0 0x100>;
 		};
 	};
+
+#if !USE_I2C1
+	lcd1602@27 {
+		compatible = "hd4478,lcd1602";
+		reg = <0x27>;
+	};
+#endif
 };
 
 
